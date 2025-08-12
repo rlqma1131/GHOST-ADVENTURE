@@ -1,21 +1,4 @@
 # GHOST-ADVENTURE
-Assets/
-└─ 01.Scripts/
-   ├─ Enemy/
-   │  ├─ EnemyAI.cs                 # 상태머신(Idle/Patrol/Chase/QTE/Investigate) + 사운드 텔레포트
-   │  ├─ EnemyMovementController.cs # 자연스러운 패atrol/추격 이동 + 문 순간이동 처리
-   │  ├─ EnemyDetection.cs          # 전/후방 듀얼 콘(시야) + 반경(전방위) 감지
-   │  ├─ EnemyQTEHandler.cs         # 잡힘-QTE 시퀀스(목숨/애니메이션/복귀) 제어
-   │  ├─ TeleporterEnemyAI.cs       # 플레이어 뒤로 정기 텔레포트하는 변형 AI
-   │  ├─ EnemyVolumeTrigger.cs      # 구역별 적 위협 감지 → 오버레이/사운드 강도 보고
-   │  └─ EnemyVolumeOverlay.cs      # 모든 적의 강도 중 최댓값만 전역 볼륨에 반영
-   │
-   ├─ Systems/
-   │  └─ QTE/
-   │     └─ QTEEffectManager.cs     # QTE 중 암전/줌/카메라 이동 연출 (Unscaled Time)
-   │
-   └─ World/
-      └─ SoundTrigger.cs            # 사운드 이벤트 → 적 사운드 추격 텔레포트 유도
 ```
 
 ## 핵심 설계
