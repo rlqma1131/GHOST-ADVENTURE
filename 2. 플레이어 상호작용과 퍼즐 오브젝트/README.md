@@ -1,4 +1,4 @@
-> ## 📂 Object 폴더 구조
+> # 📂 Object 폴더 구조
 ```cs
 Object/
  ├── BaseInteractable.cs              # 모든 상호작용 오브젝트 공통 베이스 (하이라이트, 플레이어 감지)
@@ -34,7 +34,7 @@ Object/
       └── ...
 ```
 ---
-> ## 핵심 설계
+> # 핵심 설계
 
 ### 1) 공통 상호작용 시스템
 **BaseInteractable**
@@ -77,7 +77,7 @@ Object/
 - 예: `ClosetDoor`(문 열기/닫기), `LightSwitch`(불 켜기/끄기).
 
 ---
-> ## 코드 예시
+> # 코드 예시
 
 ### 공통 상호작용 베이스
 ```csharp
