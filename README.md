@@ -59,9 +59,9 @@
 |------|------|--------|--------|
 | **조윤재** 👑 | Leader | yunjae2088@gmail.com | - |
 | **최다혜** 👩🏻‍💻 | PR_Lead | rlqma1131@gmail.com | [rlqma1131](https://github.com/rlqma1131) |
-| **장혁준** 🫅 | Member | hbks1234@gmail.com | [hbks0224](https://github.com/hbks0224) |
-| **박도운** 🫅 | Member | ehdns1562@gmail.com | [DounPark](https://github.com/DounPark) |
-| **최은송** 🫅 | Member | song33@outlook.kr | [song-ssi](https://github.com/song-ssi) |
+| **장혁준**  | Member | hbks1234@gmail.com | [hbks0224](https://github.com/hbks0224) |
+| **박도운**  | Member | ehdns1562@gmail.com | [DounPark](https://github.com/DounPark) |
+| **최은송**  | Member | song33@outlook.kr | [song-ssi](https://github.com/song-ssi) |
 
 ---
 
