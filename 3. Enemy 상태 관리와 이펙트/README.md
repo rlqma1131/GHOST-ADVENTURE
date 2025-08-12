@@ -177,5 +177,4 @@ overlayVolume.enabled = (currentWeight > enableEpsilon);
 - `QTE → (Idle|Patrol)`: QTE 종료 후 복귀(성공/실패에 따라 분기)
 
 ```
-            
 (잡힘) Any ──▶ QTE ──▶ (Idle | Patrol | GameOver)
