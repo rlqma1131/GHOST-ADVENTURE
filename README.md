@@ -68,22 +68,22 @@
 ## 📷 스크린샷
 
 ### 🖥 시작 화면
-![시작 화면](1.-Build-Package/screenshots/start_screen.gif)
+![시작 화면](1.%20Build%20Package/Screenshots/start_screen.gif)
 
 ---
 
 ### 🏠 CH1 - 가정집
-![CH1-1](1.-Build-Package/screenshots/ch1_01.gif)
-![CH1-2](1.-Build-Package/screenshots/ch1_02.gif)
+![CH1-1](1.%20Build%20Package/Screenshots/ch1_01.gif)
+![CH1-2](1.%20Build%20Package/Screenshots/ch1_02.gif)
 
 ---
 
 ### 🎠 CH2 - 놀이터
-![CH2-1](1.-Build-Package/screenshots/ch2_01.gif)
+![CH2-1](1.%20Build%20Package/Screenshots/ch2_01.gif)
 
 ---
 
 ### 🏥 CH3 - 병원
-![CH3-1](1.-Build-Package/screenshots/ch3_01.gif)
+![CH3-1](1.%20Build%20Package/Screenshots/ch3_01.gif)
 
 
