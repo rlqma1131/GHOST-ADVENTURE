@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:GhostAdventureProject/Assets/01.Scripts/UI/QTEUI.cs.meta
+guid: af4d4d1df443cb64b9080db2f4392ba6
+========
+guid: f3a73dc93ee2e7f4c8fdd1e3151cba0f
+>>>>>>>> Hyeokjun_ScanMemory:GhostAdventureProject/Assets/01.Scripts/TimeLine/CameraZoom.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
