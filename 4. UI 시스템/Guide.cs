@@ -21,7 +21,6 @@ public class Guide : MonoBehaviour, IUIClosable
     void OnDisable()
     {
         EnemyAI.ResumeAllEnemies();
-        // UIManager.Instance.SetDefaultCursor();
         UIManager.Instance.PlayModeUI_OpenAll();
     }
 
@@ -50,7 +49,6 @@ public class Guide : MonoBehaviour, IUIClosable
     {
         if(IsOpen())
         {
-            // UIManager.Instance.SwipeCursor();
             EnemyAI.PauseAllEnemies();
         }
     }

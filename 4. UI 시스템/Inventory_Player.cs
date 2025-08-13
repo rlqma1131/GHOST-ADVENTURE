@@ -20,7 +20,6 @@ public class Inventory_Player : MonoBehaviour
     public List<InventorySlot_Player> inventorySlots; // 슬롯 4개
     private int currentPage = 0;
     private int cluesPerPage = 4;
-    // [SerializeField] TextMeshProUGUI currentPageText; // 현재 페이지 표시
 
     [Header("Row Containers")]
     [SerializeField] private RectTransform frontRow; // 앞줄(아래)
@@ -215,98 +214,36 @@ public class Inventory_Player : MonoBehaviour
     isAnimating = false;
     }
 
-    // private void Update()
-    // {
-    //     for (int i = 1; i <= 5; i++)
-    //     {
-    //         if (Input.GetKeyDown(KeyCode.Alpha0 + i))
-    //         {
-    //             int slotIndex = i - 1;
-    //             int clueIndex = currentPage * cluesPerPage + slotIndex;
-
-    //             if (InventoryExpandViewer.Instance.IsShowing())
-    //             {
-    //                 InventoryExpandViewer.Instance.HideClue();
-    //             }
-    //             else if (clueIndex < collectedClues.Count)
-    //             {
-    //                 InventoryExpandViewer.Instance.ShowClue(collectedClues[clueIndex]);
-    //             }
-    //         }
-    //     }
-    // }
-
-
     private void Update()
     {
-    //     for (int i = 0; i < 5; i++)
-    //     {
-    //         if(ESCMenu.Instance != null)
-    //         {
-    //         KeyCode key = ESCMenu.Instance.GetKey(i);
-    //         if (Input.GetKeyDown(key))
-    //         {
-    //             int clueIndex = currentPage * cluesPerPage + i;
-
-    //             if (InventoryExpandViewer.Instance.IsShowing())
-    //             {
-    //                 InventoryExpandViewer.Instance.HideClue();
-    //             }
-    //             else if (clueIndex < collectedClues.Count)
-    //             {
-    //                 InventoryExpandViewer.Instance.ShowClue(collectedClues[clueIndex]);
-    //             }
-    //         }}
-    //     }
-    // }
-
-//     if (Input.GetKeyDown(KeyCode.Tab))
-// {
-//     FocusIsPlayer = !FocusIsPlayer;
-
-//     // // 플레이어 라벨 즉시 갱신
-//     // foreach (var s in frontSlots) s.SetKeyVisible(FocusIsPlayer);
-//     // foreach (var s in backSlots)  s.SetKeyVisible(false);
-
-//     // // 빙의 라벨은 반대로
-//     // if (Inventory_PossessableObject.Instance)
-//     //     Inventory_PossessableObject.Instance.SetKeyLabelsVisible(!FocusIsPlayer);
-// }
         if (Input.GetKeyDown(KeyCode.Tab))
-    {
-        FocusIsPlayer = !FocusIsPlayer;
-
-        // 플레이어 라벨: 포커스일 때만 보이기
-        SetPlayerKeyLabelsVisible(FocusIsPlayer);
-
-        // 빙의 라벨: 반대로
-        if (Inventory_PossessableObject.Instance != null)
-            Inventory_PossessableObject.Instance.SetKeyLabelsVisible(!FocusIsPlayer);
-    }
-
-        //  if (InventoryInputFocus.Current != InvSide.Player) return; // ← 포커스 가드
-
-    for (int i = 0; i < 4; i++)
-    {
-        var alpha = frontKeys[i];
-        var keypad = KeyCode.Keypad1 + i;
-        if (Input.GetKeyDown(alpha) || Input.GetKeyDown(keypad))
         {
-            if(!FocusIsPlayer) return;
-            int frontStart = frontShowsFirstPage ? 0 : cluesPerFace;
-            int clueIndex = frontStart + i;
+            FocusIsPlayer = !FocusIsPlayer;
 
-            if (UIManager.Instance.InventoryExpandViewerUI.IsShowing())
-                UIManager.Instance.InventoryExpandViewerUI.HideClue();
-            else if (clueIndex < collectedClues.Count)
-                UIManager.Instance.InventoryExpandViewerUI.ShowClue(collectedClues[clueIndex]);
-        }
+            // 플레이어 라벨: 포커스일 때만 보이기
+            SetPlayerKeyLabelsVisible(FocusIsPlayer);
+
+            // 빙의 라벨: 반대로
+            if (Inventory_PossessableObject.Instance != null)
+                Inventory_PossessableObject.Instance.SetKeyLabelsVisible(!FocusIsPlayer);
         }
 
-        // if(Input.GetKeyDown(KeyCode.Tab))
-        // {
-        //     ToggleFace();
-        // }
+        for (int i = 0; i < 4; i++)
+        {
+            var alpha = frontKeys[i];
+            var keypad = KeyCode.Keypad1 + i;
+            if (Input.GetKeyDown(alpha) || Input.GetKeyDown(keypad))
+            {
+                if(!FocusIsPlayer) return;
+                int frontStart = frontShowsFirstPage ? 0 : cluesPerFace;
+                int clueIndex = frontStart + i;
+
+                if (UIManager.Instance.InventoryExpandViewerUI.IsShowing())
+                    UIManager.Instance.InventoryExpandViewerUI.HideClue();
+                else if (clueIndex < collectedClues.Count)
+                    UIManager.Instance.InventoryExpandViewerUI.ShowClue(collectedClues[clueIndex]);
+            }
+        }
     }
     
 }

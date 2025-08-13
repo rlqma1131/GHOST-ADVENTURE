@@ -141,11 +141,6 @@ public class MemoryStorage : MonoBehaviour, IUIClosable
             pageTurnImage.sprite = sprite;
             yield return new WaitForSeconds(frameInterval);
         }
-
-        // pageTurnImage.gameObject.SetActive(false);
-        // isFlipping = false;
-        // onComplete?.Invoke();
-        
         pageTurnImage.sprite = defaultPageSprite;
 
         onComplete?.Invoke();

@@ -13,8 +13,6 @@ public class InventoryExpandViewer : MonoBehaviour
     private bool isShowing = false; // "패널 클릭시 닫기" 기능용 불값
     public System.Action OnClueHidden; // 이벤트
 
-    // public static InventoryExpandViewer Instance; // 싱글톤(수정예정)
-
     private void Awake()
     {
         // cluePanel.SetActive(false);
@@ -85,24 +83,4 @@ public class InventoryExpandViewer : MonoBehaviour
     }
 
     public bool IsShowing() => isShowing;
-
-
-    // EnemyAI.PauseAllEnemies();
-    //     clueImage.sprite = clue.clue_Image;
-    //     clueName.text = clue.clue_Name;
-    //     clueDescription.text = clue.clue_Description;
-    //     clueImage.SetNativeSize();  
-    //       // 이미지가 클 경우 크기 조정
-    //     float originalHeight = clue.clue_Image.texture.height;
-    //     if(originalHeight > 800f)
-    //     {
-    //         float fixedHeight = 800;
-    //         float originalWidth = clue.clue_Image.texture.width;
-    //         float aspectRatio = originalWidth / originalHeight;
-    //         float calculatedWidth = fixedHeight * aspectRatio;
-
-    //         clueImage.rectTransform.sizeDelta = new Vector2(calculatedWidth, fixedHeight);
-    //           }
-    //     cluePanel.SetActive(true);
-    //     isShowing = true;
 }

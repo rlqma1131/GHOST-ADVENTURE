@@ -167,16 +167,3 @@ public class TutorialManager : Singleton<TutorialManager>
     }
     public bool HasCompleted(TutorialStep step) => completedSteps.Contains(step);
 }
-
-
-// // 사용할 때
-// if (!TutorialManager.Instance.HasCompleted(TutorialStep.LivingRoomIntro))
-// {
-//     TutorialManager.Instance.Show(TutorialStep.LivingRoomIntro);
-// }
-
-// TutorialManager.Instance.Show(TutorialStep.ScanGuide); // 내부에서 중복 방지됨
-
-// if (!TutorialManager.Instance.HasCompleted(TutorialStep.ForcePossess))
-//     StartCoroutine(ForcePossessTutorial());
-// // 튜토리얼 흐름을 직접 막아야 할 땐, Show()가 아니라 직접 함수 호출하면 돼.

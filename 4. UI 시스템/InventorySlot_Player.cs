@@ -15,7 +15,6 @@ public class InventorySlot_Player : MonoBehaviour
 [Header("Dim Settings")]
     [Range(0f,1f)] public float dimAlpha = 0.6f; // 뒷면 투명도
     private float normalAlpha = 1f;
-    // public TextMeshProUGUI clueName;
 
     public void Setup(ClueData clue)
     {

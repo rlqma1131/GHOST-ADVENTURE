@@ -183,7 +183,6 @@ public class Inventory_PossessableObject : MonoBehaviour
     {
         if (item == null) return false;
 
-        // 예: 플레이어가 근처에 상호작용 대상이 있는가?
         if (item.Item_Type == ItemType.Consumable)
         {
             // return IsNearUsableTarget(); // 예: 문, 상자, 장치 등
@@ -193,23 +192,6 @@ public class Inventory_PossessableObject : MonoBehaviour
 
     public void UseItem(ItemData item, int amount)
     {
-        // InventorySlot_PossessableObject slot = spawnedSlots
-        // .ConvertAll(s => s.GetComponent<InventorySlot_PossessableObject>())
-        // .Find(s => s.item == item);        
-        
-        // if (slot != null)
-        // {
-        //     slot.UseItem(amount);
-        //     // if (HaveItem.Instance.inventorySlots.Contains(slot))
-        //     // {
-        //         HaveItem.Instance.inventorySlots.Remove(slot);
-        //         Debug.Log("인벤토리슬롯 개수: " + HaveItem.Instance.inventorySlots.Count);
-        //     // }
-
-        //     // UpdateUI(); // UI 새로고침 (선택사항: 자동 갱신되면 생략 가능)
-        // }
-        // else
-        //     HaveItem.Instance.inventorySlots.Clear();
         InventorySlot_PossessableObject slot = spawnedSlots
             .ConvertAll(s => s.GetComponent<InventorySlot_PossessableObject>())
             .Find(s => s.item == item);
@@ -220,8 +202,6 @@ public class Inventory_PossessableObject : MonoBehaviour
 
             if (slot.IsEmpty())
             {
-                // haveItem.inventorySlots.Clear();
-                // haveItem.inventorySlots.Remove(slot);
                 haveItem.inventorySlots.RemoveAll(s => s.item == item);
                 Debug.Log("해브아이템" + haveItem.inventorySlots.Count);
             }
@@ -238,24 +218,6 @@ public class Inventory_PossessableObject : MonoBehaviour
             if (slot) slot.SetKeyVisible(on);
         }
     }
-
-    
-
     public ItemData selectedItem() => selectedSlot != null ? selectedSlot.item : null;
-
-
-//     public void ClearAllSlotHighlights()
-// {
-//     foreach (GameObject slotObj in spawnedSlots)
-//     {
-//         var slot = slotObj.GetComponent<InventorySlot_PossessableObject>();
-//         if (slot != null)
-//             slot.keyText_PO.gameObject.SetActive(false);
-//     }
-
-//     selectedSlot = null;
-//     selectedSlotIndex = -1;
-// }
-
 
 }

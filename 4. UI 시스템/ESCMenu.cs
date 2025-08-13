@@ -205,35 +205,7 @@ public class ESCMenu : MonoBehaviour, IUIClosable
         }
     }
 
-    // private void Update()
-    // {
-    //     if (waitingSlot != -1)
-    //     {
-    //         foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
-    //         {
-    //             if (Input.GetKeyDown(key))
-    //             {
-    //                 keybindConfig.SetKeyForSlot(waitingSlot, key);
-    //                 PlayerPrefs.SetString($"ClueKey{waitingSlot}", key.ToString());
-    //                 Debug.Log($"단서 {waitingSlot + 1} 키가 {key}로 설정됨");
-    //                 waitingSlot = -1;
-    //                 break;
-    //             }
-    //         }
-    //     }
-    // }
-
-
-    // using System;
-    // using System.Collections.Generic;
-    // using UnityEngine;
-
-    // public class KeyBindingManager : MonoBehaviour, IUIClosable
-    // {
-    //     public static KeyBindingManager Instance;
-
     public Dictionary<int, KeyCode> clueKeyBindings = new Dictionary<int, KeyCode>();
-
 
 
     public void SetKey(int clueIndex, KeyCode key)
@@ -257,30 +229,11 @@ public class ESCMenu : MonoBehaviour, IUIClosable
         {
             string name = key.ToString();
 
-            // 숫자 키 (Alpha1 ~ Alpha9 → 1 ~ 9)
             if (name.StartsWith("Alpha") && name.Length == 6)
             {
                 return name.Substring(5);
             }
 
-            // // Keypad 숫자 (Keypad1 ~ Keypad9 → KP1 ~ KP9)
-            // if (name.StartsWith("Keypad") && name.Length == 7)
-            // {
-            //     return "KP" + name.Substring(6);
-            // }
-
-                // // Keypad 숫자 (Keypad1 ~ Keypad9 → KP1 ~ KP9)
-            // if (name.StartsWith("F") && name.Length == 2)
-            // {
-            //     return name;
-            // }
-            // // 스페이스 등 특수 키 포맷 조정 (예시)
-            // if (key == KeyCode.Space)
-            // {
-            //     return "Space";
-            // }
-
-            // 기본 이름 그대로
             return name;
         }
     }
