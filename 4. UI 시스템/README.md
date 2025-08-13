@@ -3,26 +3,30 @@
 플레이 모드 전반의 UI(프롬프트·인벤토리·단서 뷰어·튜토리얼·알림·설정·커서 등)를 통합 관리하는 모듈입니다.  
 `UIManager`를 중심으로 화면에 상시 표시되는 요소와 상황 기반 팝업을 일관된 방식으로 제어합니다.
 
+
+  
 ---
 
-## 📂 폴더 구조
-UI 시스템/
-├─ Core/ # UIManager, 공용 인터페이스/이벤트
-├─ Prompt/ # 화면 우상단 토스트/프롬프트
-├─ Inventory/
-│ ├─ Player/ # 플레이어 단서 인벤토리(페이지/키 바인딩)
-│ └─ Possessable/ # 빙의 오브젝트 인벤토리(포커스/선택)
-├─ ClueViewer/ # 단서 확대 뷰어(열기/닫기 이벤트)
-├─ Tutorial/ # 튜토리얼 단계 관리/강제 클릭 가이드
-├─ Notice/ # 중앙 알림(페이드 인/아웃)
-├─ Settings/ # 옵션(오디오 볼륨, 언어 등)
-├─ Cursor/ # 커서 매니저(상호작용/잠금표시 등)
-└─ MemoryBook/ # 기억저장소(책 넘김 UI, 2개씩 페이징)
+
+> ## 📂 폴더 구조
+
+UI 시스템/  
+├─ Core/ # UIManager, 공용 인터페이스/이벤트  
+├─ Prompt/ # 화면 우상단 토스트/프롬프트  
+├─ Inventory/  
+│  ├─ Player/ # 플레이어 단서 인벤토리(페이지/키 바인딩)  
+│  └─ Possessable/ # 빙의 오브젝트 인벤토리(포커스/선택)  
+├─ ClueViewer/ # 단서 확대 뷰어(열기/닫기 이벤트)  
+├─ Tutorial/ # 튜토리얼 단계 관리/강제 클릭 가이드  
+├─ Notice/ # 중앙 알림(페이드 인/아웃)  
+├─ Settings/ # 옵션(오디오 볼륨, 언어 등)  
+├─ Cursor/ # 커서 매니저(상호작용/잠금표시 등)  
+└─ MemoryBook/ # 기억저장소(책 넘김 UI, 2개씩 페이징)  
 
 
 ---
 
-## 🛠 핵심 설계
+> ## 🛠 핵심 설계
 
 - **UIManager 단일 진입점**  
   각 UI 모듈을 `UIManager.Instance`가 보유/중계하며 전역 제어 가능.
@@ -41,16 +45,7 @@ UI 시스템/
 
 ---
 
-## ✨ 설계 특징
-
-- **느슨한 결합 / 강한 응집** : UI 간 통신은 `UIManager`와 이벤트만 사용.
-- **비동기 안전성** : 트윈·코루틴 재진입 방지 플래그 사용.
-- **상황 재현성** : 튜토리얼/프롬프트는 중복 방지 및 1회성·조건부 반복 구분.
-- **모드 전환 안정화** : 씬 전환 시 `PlayModeUI_CloseAll()` 호출로 버그 예방.
-
----
-
-## 💻 코드 예시
+> ## 💻 코드 예시
 
 ### 1) 프롬프트(토스트) 누적 표현
 ```csharp
@@ -82,10 +77,10 @@ public void ShowPrompt(string line, float display = 2f)
         .AppendInterval(display)
         .AppendCallback(() => RemoveOldestIfNeeded());
 }
+```
 
-2) 단서 뷰어(이벤트 연동)
-csharp
-복사
+### 2) 단서 뷰어(이벤트 연동)
+```csharp
 public void HideClue()
 {
     EnemyAI.ResumeAllEnemies();
@@ -93,10 +88,10 @@ public void HideClue()
     isShowing = false;
     OnClueHidden?.Invoke();
 }
+```
 
-3) 튜토리얼 단계 관리
-csharp
-복사
+### 3) 튜토리얼 단계 관리
+```csharp
 public void Show(TutorialStep step, bool once = true)
 {
     if (once && completed.Contains(step)) return;
@@ -104,10 +99,10 @@ public void Show(TutorialStep step, bool once = true)
     UIBlocker.MaskExcept(UIManager.Instance.GetTutorialTarget(step));
     completed.Add(step);
 }
+```
 
-4) 기억저장소 책 넘기기
-csharp
-복사
+### 4) 기억저장소 책 넘기기
+```csharp
 IEnumerator PageTurnCoroutine(Action onComplete)
 {
     isFlipping = true;
@@ -119,10 +114,10 @@ IEnumerator PageTurnCoroutine(Action onComplete)
     isFlipping = false;
     onComplete?.Invoke();
 }
+```
 
-6) 인벤토리(플레이어/빙의) 포커스와 키 바인딩
-csharp
-복사
+### 6) 인벤토리(플레이어/빙의) 포커스와 키 바인딩
+```csharp
 public enum InvSide { Player, Possess }
 public static class InventoryInputFocus { public static InvSide Current = InvSide.Player; }
 
@@ -145,10 +140,10 @@ public class Inventory_Player : MonoBehaviour
         return (clueIndex >= 0 && clueIndex < frontKeys.Length) ? frontKeys[clueIndex] : KeyCode.None;
     }
 }
+```
 
-7) 설정 – 볼륨 슬라이더 연동
-csharp
-복사
+### 7) 설정 – 볼륨 슬라이더 연동
+```csharp
 public class SettingsUI : MonoBehaviour
 {
     [SerializeField] Slider bgmSlider, sfxSlider, masterVolumeSlider;
@@ -162,3 +157,13 @@ public class SettingsUI : MonoBehaviour
         masterVolumeSlider.onValueChanged.AddListener(v => AudioListener.volume = v);
     }
 }
+```
+
+> ## ✨ 설계 특징
+
+- **느슨한 결합 / 강한 응집** : UI 간 통신은 `UIManager`와 이벤트만 사용.
+- **비동기 안전성** : 트윈·코루틴 재진입 방지 플래그 사용.
+- **상황 재현성** : 튜토리얼/프롬프트는 중복 방지 및 1회성·조건부 반복 구분.
+- **모드 전환 안정화** : 씬 전환 시 `PlayModeUI_CloseAll()` 호출로 버그 예방.
+
+---
