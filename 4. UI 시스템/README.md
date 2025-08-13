@@ -1,6 +1,6 @@
 # 4. UI 시스템
 
-플레이 모드 전반의 UI(프롬프트·인벤토리·단서 뷰어·튜토리얼·알림·설정·커서 등)를 통합 관리하는 모듈입니다.  
+플레이 모드 전반의 UI(프롬프트·인벤토리·단서뷰어·튜토리얼·알림·설정·커서 등)를 통합 관리하는 모듈입니다.  
 `UIManager`를 중심으로 화면에 상시 표시되는 요소와 상황 기반 팝업을 일관된 방식으로 제어합니다.
 
 
@@ -10,18 +10,17 @@
 
 > ## 📂 폴더 구조
 
-UI 시스템/  
+UI/  
 ├─ Core/ # UIManager, 공용 인터페이스/이벤트  
-├─ Prompt/ # 화면 우상단 토스트/프롬프트  
+└─ MemoryStorage/ # 기억저장소(책 형식. 2개씩 페이징)  
 ├─ Inventory/  
 │  ├─ Player/ # 플레이어 단서 인벤토리(페이지/키 바인딩)  
-│  └─ Possessable/ # 빙의 오브젝트 인벤토리(포커스/선택)  
+│  └─ Possessable/ # 빙의 오브젝트 아이템 인벤토리(포커스/선택)  
 ├─ ClueViewer/ # 단서 확대 뷰어(열기/닫기 이벤트)  
+├─ EscMenu / # 옵션(오디오 볼륨) 
 ├─ Tutorial/ # 튜토리얼 단계 관리/강제 클릭 가이드  
-├─ Notice/ # 중앙 알림(페이드 인/아웃)  
-├─ Settings/ # 옵션(오디오 볼륨, 언어 등)  
-├─ Cursor/ # 커서 매니저(상호작용/잠금표시 등)  
-└─ MemoryBook/ # 기억저장소(책 넘김 UI, 2개씩 페이징)  
+├─ Prompt/ # 중앙 알림(페이드 인/아웃)  
+├─ Notice/ # 화면 우상단 토스트/프롬프트  
 
 
 ---
@@ -40,8 +39,6 @@ UI 시스템/
   기억저장소는 책 넘기기 연출과 입력 잠금 처리.
 - **입력/상호작용 보호**  
   튜토리얼에서 특정 버튼 외 영역 인터랙션 차단.
-- **사운드·설정 연동**  
-  슬라이더 → `SoundManager` 및 `AudioListener.volume`로 즉시 반영.
 
 ---
 
@@ -116,7 +113,7 @@ IEnumerator PageTurnCoroutine(Action onComplete)
 }
 ```
 
-### 6) 인벤토리(플레이어/빙의) 포커스와 키 바인딩
+### 5) 인벤토리(플레이어/빙의) 포커스와 키 바인딩
 ```csharp
 public enum InvSide { Player, Possess }
 public static class InventoryInputFocus { public static InvSide Current = InvSide.Player; }
@@ -142,22 +139,6 @@ public class Inventory_Player : MonoBehaviour
 }
 ```
 
-### 7) 설정 – 볼륨 슬라이더 연동
-```csharp
-public class SettingsUI : MonoBehaviour
-{
-    [SerializeField] Slider bgmSlider, sfxSlider, masterVolumeSlider;
-
-    void Start()
-    {
-        bgmSlider.value = SoundManager.Instance.BGMVolume;
-        sfxSlider.value = SoundManager.Instance.SFXVolume;
-
-        sfxSlider.onValueChanged.AddListener(SoundManager.Instance.SetSFXVolume);
-        masterVolumeSlider.onValueChanged.AddListener(v => AudioListener.volume = v);
-    }
-}
-```
 
 > ## ✨ 설계 특징
 
